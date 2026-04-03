@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx create-next-app@14 . --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --no-git)",
+      "Read(//c/Users/AS/Desktop/**)",
+      "Bash(npx create-next-app@14 trustpoint-temp --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --no-git)",
+      "Bash(cp -r /c/Users/AS/Desktop/trustpoint-temp/* /c/Users/AS/Desktop/consulting/)",
+      "Bash(cp /c/Users/AS/Desktop/trustpoint-temp/.eslintrc.json /c/Users/AS/Desktop/consulting/)",
+      "Bash(cp /c/Users/AS/Desktop/trustpoint-temp/.gitignore /c/Users/AS/Desktop/consulting/)",
+      "Bash(cp -r /c/Users/AS/Desktop/trustpoint-temp/src /c/Users/AS/Desktop/consulting/)",
+      "Bash(cp -r /c/Users/AS/Desktop/trustpoint-temp/public /c/Users/AS/Desktop/consulting/)",
+      "Bash(cp /c/Users/AS/Desktop/trustpoint-temp/package.json /c/Users/AS/Desktop/consulting/)",
+      "Bash(cp /c/Users/AS/Desktop/trustpoint-temp/tsconfig.json /c/Users/AS/Desktop/consulting/)",
+      "Bash(cp /c/Users/AS/Desktop/trustpoint-temp/tailwind.config.ts /c/Users/AS/Desktop/consulting/)",
+      "Bash(cp /c/Users/AS/Desktop/trustpoint-temp/package-lock.json /c/Users/AS/Desktop/consulting/)",
+      "Bash(cp /c/Users/AS/Desktop/trustpoint-temp/postcss.config.mjs /c/Users/AS/Desktop/consulting/)",
+      "Bash(mkdir -p /c/Users/AS/Desktop/consulting/public)",
+      "Bash(npm install:*)"
+    ]
+  }
+}

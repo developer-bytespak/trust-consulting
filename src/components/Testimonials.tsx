@@ -1,0 +1,181 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
+import { gsap } from "@/lib/gsap-config";
+
+const testimonials = [
+  {
+    name: "Maria G.",
+    service: "Immigration Services",
+    text: "TrustPoint made the entire visa process feel manageable. They handled everything with professionalism and kept us informed every step of the way. I cannot recommend them enough.",
+  },
+  {
+    name: "James R.",
+    service: "Business Services",
+    text: "I needed to form my LLC quickly and TrustPoint delivered. They explained every step clearly and had everything set up faster than I expected. Outstanding service.",
+  },
+  {
+    name: "Sofia M.",
+    service: "Apostille & Notary",
+    text: "I had urgent documents that needed apostille certification for an international transaction. TrustPoint got it done in record time. Truly a lifesaver.",
+  },
+  {
+    name: "Carlos T.",
+    service: "Insurance & Taxes",
+    text: "Their tax filing service saved me a significant amount this year. The team was thorough, knowledgeable, and always available to answer my questions.",
+  },
+  {
+    name: "Angela P.",
+    service: "Fingerprinting",
+    text: "Quick, professional, and hassle-free. The fingerprinting service was exactly what I needed for my background check. Will be coming back for all my consulting needs.",
+  },
+];
+
+// Duplicate for infinite scroll
+const allTestimonials = [...testimonials, ...testimonials];
+
+export default function Testimonials() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
+  const tweenRef = useRef<gsap.core.Tween | null>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      if (!trackRef.current) return;
+
+      const cards = trackRef.current.children;
+      const totalWidth = Array.from(cards)
+        .slice(0, testimonials.length)
+        .reduce((acc, card) => acc + (card as HTMLElement).offsetWidth + 24, 0);
+
+      tweenRef.current = gsap.to(trackRef.current, {
+        x: -totalWidth,
+        duration: 30,
+        ease: "none",
+        repeat: -1,
+        modifiers: {
+          x: gsap.utils.unitize((x: number) => {
+            return parseFloat(String(x)) % totalWidth;
+          }),
+        },
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  useEffect(() => {
+    if (tweenRef.current) {
+      if (isHovered) {
+        tweenRef.current.pause();
+      } else {
+        tweenRef.current.resume();
+      }
+    }
+  }, [isHovered]);
+
+  const stars = Array.from({ length: 5 }).map((_, i) => (
+    <svg key={i} viewBox="0 0 20 20" className="w-4 h-4 fill-brand-gold">
+      <path d="M10 1l2.47 5.01L18 6.97l-4 3.9.94 5.5L10 13.77l-4.94 2.6.94-5.5-4-3.9 5.53-.96L10 1z" />
+    </svg>
+  ));
+
+  return (
+    <section
+      ref={sectionRef}
+      id="testimonials"
+      className="section-y bg-brand-offwhite overflow-hidden"
+    >
+      <div className="max-w-7xl mx-auto section-padding">
+        {/* Section Header */}
+        <div className="text-center mb-16">
+          <motion.span
+            className="inline-block font-body text-xs tracking-[0.2em] uppercase text-brand-gold font-semibold mb-4"
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            Client Stories
+          </motion.span>
+
+          <motion.h2
+            className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-brand-black leading-tight mb-4"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+          >
+            What Our Clients Say About Us
+          </motion.h2>
+
+          <motion.p
+            className="font-sub text-lg md:text-xl text-brand-black/60 max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+          >
+            We measure our success by the success of the people we serve.
+          </motion.p>
+        </div>
+      </div>
+
+      {/* Carousel */}
+      <div
+        className="relative"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        <div
+          ref={trackRef}
+          className="flex gap-6 pl-6"
+          style={{ width: "max-content" }}
+        >
+          {allTestimonials.map((testimonial, i) => (
+            <motion.div
+              key={`${testimonial.name}-${i}`}
+              className="relative bg-white rounded-xl p-8 w-[380px] flex-shrink-0 border-b-2 border-brand-gold/30"
+              whileHover={{
+                y: -8,
+                boxShadow: "0 16px 32px rgba(0, 0, 0, 0.08)",
+              }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            >
+              {/* Gold quotation mark */}
+              <div className="absolute top-4 right-6 font-display text-7xl text-brand-gold/10 leading-none select-none">
+                &ldquo;
+              </div>
+
+              {/* Stars */}
+              <div className="flex gap-1 mb-4">{stars}</div>
+
+              {/* Text */}
+              <p className="font-body text-sm text-brand-black/70 leading-relaxed italic mb-6 relative z-10">
+                &ldquo;{testimonial.text}&rdquo;
+              </p>
+
+              {/* Author */}
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-brand-gold/10 flex items-center justify-center">
+                  <span className="font-display text-sm font-bold text-brand-gold">
+                    {testimonial.name.charAt(0)}
+                  </span>
+                </div>
+                <div>
+                  <p className="font-body text-sm font-semibold text-brand-black">
+                    {testimonial.name}
+                  </p>
+                  <span className="inline-block font-body text-[10px] tracking-widest uppercase text-brand-gold bg-brand-gold/8 px-2 py-0.5 rounded-full mt-0.5">
+                    {testimonial.service}
+                  </span>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
