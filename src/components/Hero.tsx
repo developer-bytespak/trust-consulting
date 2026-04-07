@@ -133,9 +133,9 @@ export default function Hero() {
             <Image
               src="/consulting-logo.png"
               alt="TrustPoint Consulting"
-              width={200}
-              height={100}
-              className="h-20 md:h-24 w-auto object-contain mx-auto"
+              width={300}
+              height={150}
+              className="h-28 md:h-36 w-auto object-contain mx-auto"
               priority
             />
           </motion.div>
@@ -144,7 +144,7 @@ export default function Hero() {
         {/* Headline */}
         <h1
           ref={headlineRef}
-          className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-brand-cream leading-tight mb-4"
+          className="font-display text-xl sm:text-3xl md:text-4xl font-bold text-brand-cream leading-tight mb-4 sm:whitespace-nowrap"
         >
           Trusted Guidance. Complete Solutions.
         </h1>
@@ -172,7 +172,7 @@ export default function Hero() {
             href={WHATSAPP}
             target="_blank"
             rel="noopener noreferrer"
-            className="relative overflow-hidden bg-brand-gold text-brand-black font-body font-semibold px-8 py-3.5 rounded-full text-base"
+            className="relative overflow-hidden bg-brand-gold text-brand-black font-body font-semibold px-6 py-2.5 rounded-full text-sm"
             whileHover={{
               scale: 1.04,
               boxShadow: "0 12px 32px rgba(201, 168, 76, 0.4)",
@@ -192,7 +192,7 @@ export default function Hero() {
             href={WHATSAPP}
             target="_blank"
             rel="noopener noreferrer"
-            className="border-2 border-brand-gold text-brand-gold font-body font-semibold px-8 py-3.5 rounded-full text-base"
+            className="border-2 border-brand-gold text-brand-gold font-body font-semibold px-6 py-2.5 rounded-full text-sm"
             whileHover={{
               scale: 1.02,
               backgroundColor: "rgba(201, 168, 76, 0.1)",
@@ -206,10 +206,10 @@ export default function Hero() {
             href={WHATSAPP}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 bg-[#25D366] text-white font-body font-semibold px-8 py-3.5 rounded-full text-base"
+            className="flex items-center gap-2 bg-brand-gold text-brand-black font-body font-semibold px-6 py-2.5 rounded-full text-sm"
             whileHover={{
               scale: 1.04,
-              boxShadow: "0 12px 32px rgba(37, 211, 102, 0.35)",
+              boxShadow: "0 12px 32px rgba(201, 168, 76, 0.4)",
             }}
             whileTap={{ scale: 0.97 }}
           >
