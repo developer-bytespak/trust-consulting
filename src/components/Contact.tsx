@@ -8,11 +8,11 @@ const WHATSAPP =
   "https://wa.me/16029184012?text=Welcome%20to%20TrustPoint%20Consulting.%20How%20can%20we%20assist%20you%20today%3F";
 
 const serviceOptions = [
-  "Immigration",
-  "Business",
-  "Fingerprinting",
-  "Legal/Notary",
-  "Insurance & Tax",
+  "Immigration & Global Mobility",
+  "Business & Corporate Services",
+  "Identity & Compliance Services",
+  "Legal Support & Documentation",
+  "Insurance & Tax Advisory",
 ];
 
 export default function Contact() {
