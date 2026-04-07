@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #0A0A0A;
-  --gold: #B8960C;
+  --background: #0A0A0A;
+  --foreground: #F5F0E8;
+  --gold: #C9A84C;
   --gold-light: #D4AF37;
-  --gold-muted: #C9A84C;
+  --gold-dark: #B8960C;
 }
 
 * {
@@ -56,16 +56,21 @@ body {
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(212, 175, 55, 0.3),
+    rgba(201, 168, 76, 0.3),
     transparent
   );
   animation: shimmer 2s infinite;
 }
 
-/* Draw line animation */
-@keyframes drawLine {
-  from { stroke-dashoffset: 1000; }
-  to { stroke-dashoffset: 0; }
+/* WhatsApp pulse */
+@keyframes pulse-gold {
+  0% { box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.5); }
+  70% { box-shadow: 0 0 0 16px rgba(201, 168, 76, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(201, 168, 76, 0); }
+}
+
+.whatsapp-pulse {
+  animation: pulse-gold 2s infinite;
 }
 
 /* Smooth scrollbar */
@@ -74,7 +79,7 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #FAFAF8;
+  background: #0A0A0A;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -83,7 +88,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #B8960C;
+  background: #D4AF37;
 }
 
 /* Form styles */

@@ -11,20 +11,16 @@ const config: Config = {
       colors: {
         brand: {
           black: "#0A0A0A",
-          white: "#FFFFFF",
-          offwhite: "#FAFAF8",
-          gold: "#B8960C",
+          gold: "#C9A84C",
           "gold-light": "#D4AF37",
-          "gold-muted": "#C9A84C",
-          divider: "#F0EDE8",
-          "gold-bg": "#FBF8F0",
-          "footer-bg": "#0D0D0D",
+          "gold-dark": "#B8960C",
+          cream: "#F5F0E8",
+          "footer-bg": "#070707",
         },
       },
       fontFamily: {
-        display: ["var(--font-playfair)", "serif"],
-        sub: ["var(--font-cormorant)", "serif"],
-        body: ["var(--font-inter)", "sans-serif"],
+        display: ["var(--font-cormorant)", "serif"],
+        body: ["var(--font-montserrat)", "sans-serif"],
       },
       letterSpacing: {
         widest: "0.2em",

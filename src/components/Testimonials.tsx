@@ -32,7 +32,6 @@ const testimonials = [
   },
 ];
 
-// Duplicate for infinite scroll
 const allTestimonials = [...testimonials, ...testimonials];
 
 export default function Testimonials() {
@@ -86,7 +85,7 @@ export default function Testimonials() {
     <section
       ref={sectionRef}
       id="testimonials"
-      className="section-y bg-brand-offwhite overflow-hidden"
+      className="section-y bg-[#0D0D0D] overflow-hidden"
     >
       <div className="max-w-7xl mx-auto section-padding">
         {/* Section Header */}
@@ -101,7 +100,7 @@ export default function Testimonials() {
           </motion.span>
 
           <motion.h2
-            className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-brand-black leading-tight mb-4"
+            className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-brand-cream leading-tight mb-4"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -111,13 +110,13 @@ export default function Testimonials() {
           </motion.h2>
 
           <motion.p
-            className="font-sub text-lg md:text-xl text-brand-black/60 max-w-2xl mx-auto"
+            className="font-body text-lg md:text-xl text-brand-cream/60 max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
           >
-            We measure our success by the success of the people we serve.
+            Trusted by individuals, families, and businesses.
           </motion.p>
         </div>
       </div>
@@ -136,15 +135,16 @@ export default function Testimonials() {
           {allTestimonials.map((testimonial, i) => (
             <motion.div
               key={`${testimonial.name}-${i}`}
-              className="relative bg-white rounded-xl p-8 w-[380px] flex-shrink-0 border-b-2 border-brand-gold/30"
+              className="relative bg-[#111111] border border-white/10 rounded-xl p-8 w-[380px] flex-shrink-0"
               whileHover={{
                 y: -8,
-                boxShadow: "0 16px 32px rgba(0, 0, 0, 0.08)",
+                borderColor: "rgba(201, 168, 76, 0.4)",
+                boxShadow: "0 16px 32px rgba(0, 0, 0, 0.3)",
               }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
               {/* Gold quotation mark */}
-              <div className="absolute top-4 right-6 font-display text-7xl text-brand-gold/10 leading-none select-none">
+              <div className="absolute top-4 right-6 font-display text-7xl text-brand-gold/15 leading-none select-none">
                 &ldquo;
               </div>
 
@@ -152,7 +152,7 @@ export default function Testimonials() {
               <div className="flex gap-1 mb-4">{stars}</div>
 
               {/* Text */}
-              <p className="font-body text-sm text-brand-black/70 leading-relaxed italic mb-6 relative z-10">
+              <p className="font-body text-sm text-brand-cream/70 leading-relaxed italic mb-6 relative z-10">
                 &ldquo;{testimonial.text}&rdquo;
               </p>
 
@@ -164,10 +164,10 @@ export default function Testimonials() {
                   </span>
                 </div>
                 <div>
-                  <p className="font-body text-sm font-semibold text-brand-black">
+                  <p className="font-body text-sm font-semibold text-brand-cream">
                     {testimonial.name}
                   </p>
-                  <span className="inline-block font-body text-[10px] tracking-widest uppercase text-brand-gold bg-brand-gold/8 px-2 py-0.5 rounded-full mt-0.5">
+                  <span className="inline-block font-body text-[10px] tracking-widest uppercase text-brand-gold bg-brand-gold/10 px-2 py-0.5 rounded-full mt-0.5">
                     {testimonial.service}
                   </span>
                 </div>

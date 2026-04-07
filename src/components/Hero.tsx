@@ -6,13 +6,16 @@ import { motion } from "framer-motion";
 import { gsap } from "@/lib/gsap-config";
 import { splitTextIntoSpans } from "@/lib/split-text";
 
+const WHATSAPP_URL = "https://wa.me/16029184012";
+const WHATSAPP_AUTO =
+  "https://wa.me/16029184012?text=Welcome%20to%20TrustPoint%20Consulting.%20How%20can%20we%20assist%20you%20today%3F";
+
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const subRef = useRef<HTMLParagraphElement>(null);
   const lineRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
-  const scrollRef = useRef<HTMLDivElement>(null);
   const logoRef = useRef<HTMLDivElement>(null);
   const particlesRef = useRef<HTMLDivElement>(null);
 
@@ -20,7 +23,6 @@ export default function Hero() {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-      // Logo entrance
       tl.from(logoRef.current, {
         scale: 0,
         opacity: 0,
@@ -28,7 +30,6 @@ export default function Hero() {
         ease: "elastic.out(1, 0.5)",
       });
 
-      // Headline split text animation
       if (headlineRef.current) {
         const words = splitTextIntoSpans(headlineRef.current, "words");
         tl.from(
@@ -44,7 +45,6 @@ export default function Hero() {
         );
       }
 
-      // Gold line draw
       tl.from(
         lineRef.current,
         {
@@ -56,48 +56,18 @@ export default function Hero() {
         "-=0.3"
       );
 
-      // Sub-headline
       tl.from(
         subRef.current,
-        {
-          y: 30,
-          opacity: 0,
-          duration: 0.6,
-        },
+        { y: 30, opacity: 0, duration: 0.6 },
         "-=0.3"
       );
 
-      // CTA buttons
       tl.from(
         ctaRef.current,
-        {
-          y: 20,
-          opacity: 0,
-          duration: 0.5,
-        },
+        { y: 20, opacity: 0, duration: 0.5 },
         "-=0.2"
       );
 
-      // Scroll indicator
-      tl.from(
-        scrollRef.current,
-        {
-          opacity: 0,
-          duration: 0.4,
-        },
-        "-=0.1"
-      );
-
-      // Infinite scroll bounce
-      gsap.to(scrollRef.current, {
-        y: 10,
-        repeat: -1,
-        yoyo: true,
-        duration: 1.2,
-        ease: "power1.inOut",
-      });
-
-      // Particles
       if (particlesRef.current) {
         const particles = particlesRef.current.children;
         Array.from(particles).forEach((particle) => {
@@ -124,31 +94,25 @@ export default function Hero() {
     <section
       ref={sectionRef}
       className="relative h-screen flex flex-col items-center justify-center overflow-hidden px-6 pt-20"
+      style={{
+        background:
+          "radial-gradient(ellipse at center, rgba(201,168,76,0.08) 0%, #0A0A0A 60%)",
+      }}
     >
-      {/* Subtle geometric pattern overlay */}
+      {/* Subtle grid overlay */}
       <div className="absolute inset-0 opacity-[0.03]">
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
-              <path
-                d="M 60 0 L 0 60"
-                stroke="#B8960C"
-                strokeWidth="0.5"
-                fill="none"
-              />
-              <path
-                d="M 0 0 L 60 60"
-                stroke="#B8960C"
-                strokeWidth="0.5"
-                fill="none"
-              />
+              <path d="M 60 0 L 0 60" stroke="#C9A84C" strokeWidth="0.5" fill="none" />
+              <path d="M 0 0 L 60 60" stroke="#C9A84C" strokeWidth="0.5" fill="none" />
             </pattern>
           </defs>
           <rect width="100%" height="100%" fill="url(#grid)" />
         </svg>
       </div>
 
-      {/* Floating gold particles */}
+      {/* Gold particles */}
       <div ref={particlesRef} className="absolute inset-0 pointer-events-none">
         {Array.from({ length: 15 }).map((_, i) => (
           <div
@@ -181,7 +145,7 @@ export default function Hero() {
         {/* Headline */}
         <h1
           ref={headlineRef}
-          className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-brand-black leading-tight mb-4"
+          className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-brand-cream leading-tight mb-4"
         >
           Trusted Guidance. Complete Solutions.
         </h1>
@@ -197,25 +161,26 @@ export default function Hero() {
         {/* Sub-headline */}
         <p
           ref={subRef}
-          className="font-sub text-base sm:text-lg md:text-xl text-brand-black/70 leading-relaxed max-w-2xl mx-auto mb-6"
+          className="font-body text-base sm:text-lg md:text-xl text-brand-cream/70 leading-relaxed max-w-2xl mx-auto mb-8"
         >
-          Your all-in-one consulting partner for Immigration, Business, Legal, and
-          Financial Services — helping individuals and businesses navigate every
-          step with confidence.
+          Strategic consulting across immigration, business, compliance, and
+          documentation&mdash;delivered with precision, confidentiality, and results.
         </p>
 
-        {/* CTA Buttons */}
+        {/* 3 CTA Buttons */}
         <div ref={ctaRef} className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <motion.a
-            href="#contact"
-            className="relative overflow-hidden bg-brand-gold text-white font-body font-semibold px-8 py-3.5 rounded-full text-base"
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="relative overflow-hidden bg-brand-gold text-brand-black font-body font-semibold px-8 py-3.5 rounded-full text-base"
             whileHover={{
               scale: 1.04,
-              boxShadow: "0 12px 32px rgba(184, 150, 12, 0.4)",
+              boxShadow: "0 12px 32px rgba(201, 168, 76, 0.4)",
             }}
             whileTap={{ scale: 0.97 }}
           >
-            <span className="relative z-10">Schedule a Consultation</span>
+            <span className="relative z-10">Book a Consultation</span>
             <motion.div
               className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
               initial={{ x: "-100%" }}
@@ -225,43 +190,38 @@ export default function Hero() {
           </motion.a>
 
           <motion.a
-            href="#services"
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="border-2 border-brand-gold text-brand-gold font-body font-semibold px-8 py-3.5 rounded-full text-base"
             whileHover={{
               scale: 1.02,
-              backgroundColor: "rgba(184, 150, 12, 0.08)",
+              backgroundColor: "rgba(201, 168, 76, 0.1)",
             }}
             whileTap={{ scale: 0.97 }}
           >
-            Explore Services
+            Start Your Case
+          </motion.a>
+
+          <motion.a
+            href={WHATSAPP_AUTO}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 bg-[#25D366] text-white font-body font-semibold px-8 py-3.5 rounded-full text-base"
+            whileHover={{
+              scale: 1.04,
+              boxShadow: "0 12px 32px rgba(37, 211, 102, 0.35)",
+            }}
+            whileTap={{ scale: 0.97 }}
+          >
+            <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+            </svg>
+            Chat With Us
           </motion.a>
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div
-        ref={scrollRef}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-      >
-        <span className="text-xs font-body text-brand-black/40 tracking-widest uppercase">
-          Scroll to explore
-        </span>
-        <svg
-          width="20"
-          height="20"
-          viewBox="0 0 20 20"
-          fill="none"
-          className="text-brand-gold"
-        >
-          <path
-            d="M10 4 L10 14 M5 10 L10 15 L15 10"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      </div>
     </section>
   );
 }

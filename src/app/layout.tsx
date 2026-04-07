@@ -1,14 +1,7 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Cormorant_Garamond, Inter } from "next/font/google";
+import { Cormorant_Garamond, Montserrat } from "next/font/google";
 import "./globals.css";
 import GSAPProvider from "@/components/GSAPProvider";
-
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-playfair",
-  display: "swap",
-  weight: ["400", "500", "600", "700", "800", "900"],
-});
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -17,16 +10,17 @@ const cormorant = Cormorant_Garamond({
   weight: ["300", "400", "500", "600", "700"],
 });
 
-const inter = Inter({
+const montserrat = Montserrat({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-montserrat",
   display: "swap",
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
   title: "TrustPoint Consulting — Trusted Guidance. Complete Solutions.",
   description:
-    "Your all-in-one consulting partner for Immigration, Business, Legal, and Financial Services. Expert guidance for individuals and businesses.",
+    "Strategic consulting across immigration, business, compliance, and documentation — delivered with precision, confidentiality, and results.",
   keywords: [
     "immigration services",
     "business consulting",
@@ -44,8 +38,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${playfair.variable} ${cormorant.variable} ${inter.variable}`}>
-      <body className="font-body antialiased bg-brand-white text-brand-black">
+    <html lang="en" className={`${cormorant.variable} ${montserrat.variable}`}>
+      <body className="font-body antialiased bg-brand-black text-brand-cream">
         <GSAPProvider>{children}</GSAPProvider>
       </body>
     </html>
