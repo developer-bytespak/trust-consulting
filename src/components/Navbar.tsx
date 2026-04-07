@@ -1,11 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { ScrollTrigger } from "@/lib/gsap-config";
-
-const WHATSAPP_URL = "https://wa.me/16029184012";
 
 const navLinks = [
   { label: "Services", href: "#services" },
@@ -15,20 +12,27 @@ const navLinks = [
 ];
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const navRef = useRef<HTMLElement>(null);
 
+  // Force fixed positioning on mobile — prevents GSAP/Framer Motion interference
   useEffect(() => {
-    const trigger = ScrollTrigger.create({
-      start: "top -80",
-      onUpdate: (self) => {
-        setScrolled(self.progress > 0);
-      },
-      onLeaveBack: () => setScrolled(false),
-    });
+    const nav = navRef.current;
+    if (!nav) return;
 
-    return () => trigger.kill();
+    const lock = () => {
+      nav.style.position = "fixed";
+      nav.style.top = "0px";
+      nav.style.transform = "none";
+      // Reset individual transform properties (Framer Motion v12+)
+      nav.style.translate = "none";
+      nav.style.scale = "none";
+      nav.style.rotate = "none";
+    };
+
+    lock();
+    window.addEventListener("scroll", lock, { passive: true });
+    return () => window.removeEventListener("scroll", lock);
   }, []);
 
   const handleNavClick = (href: string) => {
@@ -41,34 +45,22 @@ export default function Navbar() {
 
   return (
     <>
-      <motion.nav
+      <nav
         ref={navRef}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled
-            ? "bg-brand-black/95 backdrop-blur-md border-b border-brand-gold/20 shadow-lg shadow-black/20"
-            : "bg-transparent"
-        }`}
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        className="fixed-nav fixed top-0 left-0 right-0 z-50 bg-brand-black border-b border-brand-gold/20"
       >
         <div className="max-w-7xl mx-auto px-6 md:px-8 flex items-center justify-between h-20">
           {/* Logo */}
-          <motion.a
-            href="#"
-            className="flex items-center"
-            whileHover={{ scale: 1.03 }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
-          >
+          <a href="#" className="flex items-center">
             <Image
               src="/consulting-logo.png"
               alt="TrustPoint Consulting"
               width={220}
               height={80}
-              className="h-16 md:h-[70px] w-auto object-contain"
+              className="h-20 md:h-[70px] w-auto object-contain"
               priority
             />
-          </motion.a>
+          </a>
 
           {/* Desktop Nav Links */}
           <div className="hidden lg:flex items-center gap-8">
@@ -95,23 +87,8 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* CTA + Hamburger */}
+          {/* Hamburger */}
           <div className="flex items-center gap-4">
-            <motion.a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden md:block bg-brand-gold text-brand-black text-sm font-body font-semibold px-6 py-2.5 rounded-full"
-              whileHover={{
-                scale: 1.04,
-                boxShadow: "0 8px 24px rgba(201, 168, 76, 0.35)",
-              }}
-              whileTap={{ scale: 0.97 }}
-            >
-              Book Consultation
-            </motion.a>
-
-            {/* Hamburger */}
             <button
               className="lg:hidden flex flex-col gap-1.5 p-2"
               onClick={() => setMobileOpen(!mobileOpen)}
@@ -132,7 +109,7 @@ export default function Navbar() {
             </button>
           </div>
         </div>
-      </motion.nav>
+      </nav>
 
       {/* Mobile Menu Overlay */}
       <AnimatePresence>
@@ -163,18 +140,6 @@ export default function Navbar() {
                   {link.label}
                 </motion.button>
               ))}
-              <motion.a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-4 bg-brand-gold text-brand-black font-body font-semibold px-8 py-3 rounded-full text-lg"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 }}
-                whileTap={{ scale: 0.97 }}
-              >
-                Book Consultation
-              </motion.a>
             </div>
           </motion.div>
         )}

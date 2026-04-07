@@ -11,7 +11,7 @@ export default function WhatsAppButton() {
       href={WHATSAPP_AUTO}
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-8 right-8 z-50 w-14 h-14 bg-brand-gold rounded-full flex items-center justify-center shadow-lg shadow-brand-gold/30 whatsapp-pulse"
+      className="fixed bottom-20 md:bottom-8 right-6 md:right-8 z-50 w-14 h-14 bg-brand-gold rounded-full flex items-center justify-center shadow-lg shadow-brand-gold/30 whatsapp-pulse"
       whileHover={{
         scale: 1.15,
         boxShadow: "0 0 24px rgba(201, 168, 76, 0.5)",

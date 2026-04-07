@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
+import Navbar from "@/components/Navbar";
 
-const Navbar = dynamic(() => import("@/components/Navbar"), { ssr: false });
 const Hero = dynamic(() => import("@/components/Hero"), { ssr: false });
 const Services = dynamic(() => import("@/components/Services"), { ssr: false });
 const WhyChooseUs = dynamic(() => import("@/components/WhyChooseUs"), { ssr: false });
@@ -12,16 +12,18 @@ const StickyBar = dynamic(() => import("@/components/StickyBar"), { ssr: false }
 
 export default function Home() {
   return (
-    <main>
+    <>
       <Navbar />
-      <Hero />
-      <Services />
-      <WhyChooseUs />
-      <Testimonials />
-      <Contact />
-      <Footer />
+      <main>
+        <Hero />
+        <Services />
+        <WhyChooseUs />
+        <Testimonials />
+        <Contact />
+        <Footer />
+      </main>
       <WhatsAppButton />
       <StickyBar />
-    </main>
+    </>
   );
 }

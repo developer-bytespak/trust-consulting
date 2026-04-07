@@ -14,14 +14,30 @@
   box-sizing: border-box;
 }
 
-html {
+html,
+body {
   scroll-behavior: smooth;
+  transform: none !important;
+  will-change: auto !important;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
   overflow-x: hidden;
+}
+
+/* Lock navbar on mobile — never let GSAP or transforms move it */
+nav.fixed-nav {
+  position: fixed !important;
+  top: 0 !important;
+  transform: none !important;
+  translate: none !important;
+  scale: none !important;
+  rotate: none !important;
+  will-change: auto !important;
+  contain: none !important;
+  backface-visibility: hidden;
 }
 
 @media (prefers-reduced-motion: reduce) {

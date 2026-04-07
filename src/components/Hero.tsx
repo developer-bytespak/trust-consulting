@@ -6,8 +6,7 @@ import { motion } from "framer-motion";
 import { gsap } from "@/lib/gsap-config";
 import { splitTextIntoSpans } from "@/lib/split-text";
 
-const WHATSAPP_URL = "https://wa.me/16029184012";
-const WHATSAPP_AUTO =
+const WHATSAPP =
   "https://wa.me/16029184012?text=Welcome%20to%20TrustPoint%20Consulting.%20How%20can%20we%20assist%20you%20today%3F";
 
 export default function Hero() {
@@ -170,7 +169,7 @@ export default function Hero() {
         {/* 3 CTA Buttons */}
         <div ref={ctaRef} className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <motion.a
-            href={WHATSAPP_URL}
+            href={WHATSAPP}
             target="_blank"
             rel="noopener noreferrer"
             className="relative overflow-hidden bg-brand-gold text-brand-black font-body font-semibold px-8 py-3.5 rounded-full text-base"
@@ -190,7 +189,7 @@ export default function Hero() {
           </motion.a>
 
           <motion.a
-            href={WHATSAPP_URL}
+            href={WHATSAPP}
             target="_blank"
             rel="noopener noreferrer"
             className="border-2 border-brand-gold text-brand-gold font-body font-semibold px-8 py-3.5 rounded-full text-base"
@@ -204,7 +203,7 @@ export default function Hero() {
           </motion.a>
 
           <motion.a
-            href={WHATSAPP_AUTO}
+            href={WHATSAPP}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 bg-[#25D366] text-white font-body font-semibold px-8 py-3.5 rounded-full text-base"

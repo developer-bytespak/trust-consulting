@@ -5,7 +5,8 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { gsap } from "@/lib/gsap-config";
 
-const WHATSAPP_URL = "https://wa.me/16029184012";
+const WHATSAPP =
+  "https://wa.me/16029184012?text=Welcome%20to%20TrustPoint%20Consulting.%20How%20can%20we%20assist%20you%20today%3F";
 
 export default function Footer() {
   const footerRef = useRef<HTMLElement>(null);
@@ -131,6 +132,9 @@ export default function Footer() {
               Contact Info
             </h4>
             <ul className="space-y-3">
+              <li className="font-body text-sm text-white/60">
+                Phoenix, AZ 85001
+              </li>
               <li>
                 <a
                   href="mailto:info@trustpointconsulting.com"
@@ -141,7 +145,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href={WHATSAPP_URL}
+                  href={WHATSAPP}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-body text-sm text-white/60 hover:text-brand-gold transition-colors"

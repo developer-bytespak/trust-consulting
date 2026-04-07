@@ -4,7 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { gsap } from "@/lib/gsap-config";
 
-const WHATSAPP_URL = "https://wa.me/16029184012";
+const WHATSAPP =
+  "https://wa.me/16029184012?text=Welcome%20to%20TrustPoint%20Consulting.%20How%20can%20we%20assist%20you%20today%3F";
 
 const serviceOptions = [
   "Immigration",
@@ -131,7 +132,7 @@ export default function Contact() {
                   Phone / WhatsApp
                 </p>
                 <a
-                  href={WHATSAPP_URL}
+                  href={WHATSAPP}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-body text-sm text-brand-cream/70 hover:text-brand-gold transition-colors"
@@ -143,7 +144,7 @@ export default function Contact() {
 
             {/* WhatsApp CTA */}
             <motion.a
-              href={WHATSAPP_URL}
+              href={WHATSAPP}
               target="_blank"
               rel="noopener noreferrer"
               className="contact-item inline-flex items-center gap-3 bg-brand-gold/10 border border-brand-gold/20 px-5 py-3 rounded-full"

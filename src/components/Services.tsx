@@ -4,8 +4,7 @@ import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { gsap, ScrollTrigger } from "@/lib/gsap-config";
 
-const WHATSAPP_URL = "https://wa.me/16029184012";
-const WHATSAPP_CHAT =
+const WHATSAPP =
   "https://wa.me/16029184012?text=Welcome%20to%20TrustPoint%20Consulting.%20How%20can%20we%20assist%20you%20today%3F";
 
 const services = [
@@ -191,7 +190,7 @@ export default function Services() {
 
               {/* CTA Button */}
               <motion.a
-                href={WHATSAPP_URL}
+                href={WHATSAPP}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block w-full text-center bg-brand-gold text-brand-black font-body font-semibold py-3 rounded-lg text-sm mb-3"
@@ -206,7 +205,7 @@ export default function Services() {
 
               {/* Chat link */}
               <a
-                href={WHATSAPP_CHAT}
+                href={WHATSAPP}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 font-body text-xs text-brand-gold/80 hover:text-brand-gold transition-colors"
